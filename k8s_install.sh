@@ -31,3 +31,7 @@ bootstrap_k8s()
 {
 sudo kubeadm init --pod-network-cidr=${pod_network_cidr}
 }
+
+install_docker
+install_k8s
+bootstrap_k8s
