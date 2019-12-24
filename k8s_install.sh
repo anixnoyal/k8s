@@ -32,6 +32,20 @@ bootstrap_k8s()
 sudo kubeadm init --pod-network-cidr=${pod_network_cidr}
 }
 
+setup_kubeconfig()
+{
+mkdir -p $HOME/.kube
+sudo cp -i /etc/kubernetes/admin.conf $HOME/.kube/config
+sudo chown $(id -u):$(id -g) $HOME/.kube/config
+}
+
+
+k8s_join()
+{
+kubeadm join 10.0.1.101:6443 --token bjt690.zatbwk68sx22ggpk --discovery-token-ca-cert-hash sha256:7e65aa46868f9adea1a26851d8326778139b4b8da87930096a8783bc5ce22cb2
+}
+
+
 install_docker
 install_k8s
 bootstrap_k8s
